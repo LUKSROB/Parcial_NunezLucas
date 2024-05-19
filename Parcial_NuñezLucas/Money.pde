@@ -21,7 +21,7 @@ class Money extends SpawnMoney{
     }
 
     public void move() {
-        if (this.position.y > 850) {
+        if (this.position.y > height + 50) {
             this.position.y = - 50;
             this.position.x = (int) random(50, width - 50);
         }
