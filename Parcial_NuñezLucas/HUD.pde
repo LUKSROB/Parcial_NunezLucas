@@ -1,5 +1,6 @@
 Money[] money;
 PImage background;
+int count = 0;
 
 public void setup() {
     size(696, 924);
@@ -19,16 +20,12 @@ public void draw() {
     for (int i = 0; i < money.length; i++) {
         money[i].display();
         money[i].move();
-    }
-    //counter();
-}
-/*
-public void counter() {
-    int count = 0;
-    for (int i = 0; i < money.length; i++) {
-        if (money[i].y > height) {
+
+        if (money[i].position.y > height + 50) {
             count++;
         }
+        fill(0);
+        textSize(20);
+        text("Monedas no recogidas: " + count, 50, 50);
     }
-    println(count);
-}*/
+}
