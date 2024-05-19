@@ -1,13 +1,14 @@
 Player player;
 Money[] money;
 PImage background;
-int count = 0;
+int countFloor = 0;
+int countBag = 0;
 
 public void setup() {
     size(696, 924);
     background = loadImage("Background.jpg");
 
-    player = new Player(new PVector(width / 2, height - 50));
+    player = new Player(new PVector(width / 2, height - 80));
     money = new Money[10];
 
     for (int i = 0; i < money.length; i++) {
@@ -25,11 +26,22 @@ public void draw() {
         money[i].move();
 
         if (money[i].position.y > height + 50) {
-            count++;
+            countFloor++;
         }
+
+        if (money[i].position.x > player.position.x - 50 &&
+            money[i].position.x < player.position.x + 50 &&
+            money[i].position.y > player.position.y - 20 &&
+            money[i].position.y < player.position.y + 75) {
+            countBag++;
+            money[i].position.y = -50;
+        }
+        
         fill(0);
         textSize(20);
-        text("Monedas no recogidas: " + count, 50, 50);
+        text("Monedas no recogidas: " + countFloor, 50, 50);
+        text("Monedas recogidas: " + countBag, 50, 80);
     }
     player.display();
+    player.move();
 }
