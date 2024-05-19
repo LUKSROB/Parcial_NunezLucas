@@ -1,3 +1,4 @@
+Player player;
 Money[] money;
 PImage background;
 int count = 0;
@@ -6,10 +7,12 @@ public void setup() {
     size(696, 924);
     background = loadImage("Background.jpg");
 
+    player = new Player(new PVector(width / 2, height - 50));
     money = new Money[10];
-        for (int i = 0; i < money.length; i++) {
-            money[i] = new Money(new PVector(random(50, width - 50), random(-height - 50, - 50)));
-        }
+
+    for (int i = 0; i < money.length; i++) {
+        money[i] = new Money(new PVector(random(50, width - 50), random(-height - 50, - 50)));
+    }
     
 }
 
@@ -28,4 +31,5 @@ public void draw() {
         textSize(20);
         text("Monedas no recogidas: " + count, 50, 50);
     }
+    player.display();
 }
